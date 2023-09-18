@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Table from '$lib/components/Table.svelte';
+</script>
+
+<section>
+	<h1 class="display-1">Overview</h1>
+	<hr />
+	<Table />
+</section>
+
+<style>
+</style>
