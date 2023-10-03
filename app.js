@@ -1,5 +1,6 @@
 const express = require("express");
 const indexRoutes = require("./routes/index.routes");
+const apiRoutes = require("./api/api.routes");
 const { openDB, createTables, closeDB } = require("./database/database.js");
 
 const app = express();
@@ -10,7 +11,10 @@ createTables(db);
 
 app.set("view engine", "ejs");
 
+app.use(express.json());
+
 app.use(indexRoutes);
+app.use(apiRoutes);
 
 app.listen(port, () => {
   console.log("App running on http://localhost:3000");
