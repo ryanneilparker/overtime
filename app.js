@@ -1,6 +1,6 @@
 const express = require("express");
 const indexRoutes = require("./routes/index.routes");
-const apiRoutes = require("./api/api.routes");
+const apiRoutes = require("./api/claims.api");
 const { openDB, createTables, closeDB } = require("./database/database.js");
 
 const app = express();

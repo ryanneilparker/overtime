@@ -30,4 +30,20 @@ router.get("/claims", (req, res) => {
   });
 });
 
+// router.put('/claims/:id', (req, res) => {
+//   const claimID = req.params.id;
+//   const { claimantID, reviewerID, statusID, createdDate } = req.body;
+//   db.run(
+//     'UPDATE CLAIM SET claimantID = ?, reviewerID = ?, statusID = ?, createdDate = ? WHERE claimID = ?',
+//     [claimantID, reviewerID, statusID, createdDate, claimID],
+//     function (err) {
+//       if (err) {
+//         res.status(500).json({ error: err.message });
+//         return;
+//       }
+//       res.json({ message: 'Claim updated successfully' });
+//     }
+//   );
+// });
+
 module.exports = router;
