@@ -1,16 +1,11 @@
 const express = require("express");
 const indexRoutes = require("./routes/index.routes");
-
-const {
-  initializeDatabase,
-  createTables,
-  closeDatabase,
-} = require("./database/database.js");
+const { openDB, createTables, closeDB } = require("./database/database.js");
 
 const app = express();
 const port = 3000;
 
-const db = initializeDatabase();
+const db = openDB();
 createTables(db);
 
 app.set("view engine", "ejs");
@@ -22,6 +17,6 @@ app.listen(port, () => {
 });
 
 process.on("SIGINT", () => {
-  closeDatabase();
+  closeDB();
   process.exit(0);
 });

@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3");
 
-function initializeDatabase() {
+function openDB() {
   const db = new sqlite3.Database("./database/database.db");
   return db;
 }
@@ -53,7 +53,7 @@ function createTables(db) {
   });
 }
 
-function closeDatabase(db) {
+function closeDB(db) {
   db.close((error) => {
     if (error) {
       console.error("Error closing database:", error.message);
@@ -64,7 +64,7 @@ function closeDatabase(db) {
 }
 
 module.exports = {
-  initializeDatabase,
+  openDB,
   createTables,
-  closeDatabase,
+  closeDB,
 };
