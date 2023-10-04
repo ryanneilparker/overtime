@@ -33,6 +33,10 @@ function createTables(db) {
             reviewerID INTEGER,
             statusID INTEGER,
             createdDate DATETIME,
+            overtimeDate DATETIME,
+            overtimeType TEXT,
+            overtimeHours FLOAT,
+            overtimeReason TEXT,
             FOREIGN KEY (claimantID) REFERENCES CLAIMANT(claimantID),
             FOREIGN KEY (reviewerID) REFERENCES REVIEWER(reviewerID),
             FOREIGN KEY (statusID) REFERENCES STATUS(statusID)

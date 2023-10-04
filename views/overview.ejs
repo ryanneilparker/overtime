@@ -11,5 +11,52 @@
   </head>
   <body>
     <h1>Overview</h1>
+    <section>
+      <table id="claimsTable">
+        <thead>
+          <tr>
+            <th>Claim ID</th>
+            <th>Claimant ID</th>
+            <th>Status ID</th>
+            <th>Created Date</th>
+            <th>Overtime Date</th>
+            <th>Overtime Type</th>
+            <th>Overtime Hours</th>
+            <th>Overtime Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Claims will be dynamically added here -->
+        </tbody>
+      </table>
+    </section>
   </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const claimsTableBody = document.querySelector("#claimsTable tbody");
+
+      fetch("/claims")
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((claim) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${claim.claimID}</td>
+              <td>${claim.claimantID}</td>
+              <td>${claim.statusID}</td>
+              <td>${claim.createdDate}</td>
+              <td>${claim.overtimeDate}</td>
+              <td>${claim.overtimeType}</td>
+              <td>${claim.overtimeHours}</td>
+              <td>${claim.overtimeReason}</td>
+            `;
+            claimsTableBody.appendChild(row);
+          });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  </script>
 </html>

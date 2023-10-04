@@ -10,6 +10,31 @@
     />
   </head>
   <body>
-    <h1>Create</h1>
+    <h1>New Overtime Claim</h1>
+    <form action="/claims" method="post">
+      <label for="overtimeDate">Date:</label>
+      <input type="date" id="overtimeDate" name="overtimeDate" required />
+
+      <label for="overtimeType">Overtime Type: </label>
+      <select name="overtimeType" id="overtimeType" required>
+        <option value="After hours work">After hours work</option>
+        <option value="Weekend work">Weekend work</option>
+        <option value="Standy">Standy</option>
+      </select>
+
+      <label for="overtimeHours">Hours:</label>
+      <input type="number" id="overtimeHours" name="overtimeHours" required />
+
+      <label for="overtimeReason">Reason:</label>
+      <textarea
+        name="overtimeReason"
+        id="overtimeReason"
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
   </body>
 </html>

@@ -5,11 +5,25 @@ const { openDB } = require("../database/database");
 const db = openDB();
 
 router.post("/claims", (req, res) => {
-  const { claimantID, reviwerID, statusID, createdDate } = req.body;
+  const reviewerID = 1; //TODO: Get the reviewers id from passport
+  const claimantID = 1; // TODO: Get the actual user id from passport
+  const createdDate = new Date().toISOString();
+  const statusID = 0;
+  const { overtimeDate, overtimeType, overtimeHours, overtimeReason } =
+    req.body;
 
   db.run(
-    "INSERT INTO CLAIM (claimantID, reviewerID, statusID, createdDate) VALUES (?, ?, ?, ?)",
-    [claimantID, reviwerID, statusID, createdDate],
+    "INSERT INTO CLAIM (claimantID, reviewerID, statusID, createdDate, overtimeDate, overtimeType, overtimeHours, overtimeReason) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+    [
+      claimantID,
+      reviewerID,
+      statusID,
+      createdDate,
+      overtimeDate,
+      overtimeType,
+      overtimeHours,
+      overtimeReason,
+    ],
     function (error) {
       if (error) {
         res.status(500).json({ error: error.message });
@@ -21,7 +35,7 @@ router.post("/claims", (req, res) => {
 });
 
 router.get("/claims", (req, res) => {
-  db.run("SELECT * FROM CLAIM", (error, rows) => {
+  db.all("SELECT * FROM CLAIM WHERE statusID = 0", (error, rows) => {
     if (error) {
       res.status(500).json({ error: error.message });
       return;
