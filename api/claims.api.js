@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { openDB } = require("../database/database");
 
+const { openDB } = require("../database/database");
 const db = openDB();
 
 router.post("/claims", (req, res) => {
   const reviewerID = 1; //TODO: Get the reviewers id from passport
   const claimantID = 1; // TODO: Get the actual user id from passport
   const createdDate = new Date().toISOString();
-  const statusID = 0;
+  const statusID = 0; // Default status is pending
   const { overtimeDate, overtimeType, overtimeHours, overtimeReason } =
     req.body;
 
@@ -29,7 +29,7 @@ router.post("/claims", (req, res) => {
         res.status(500).json({ error: error.message });
         return;
       }
-      res.json({ id: this.lastID });
+      res.redirect("/overview");
     }
   );
 });
